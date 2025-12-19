@@ -31,6 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
 # application-example.properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/food_db
 spring.datasource.username=coder2client
@@ -39,5 +40,7 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto=update
+
+backend/src/main/resources/application.properties
 
 
