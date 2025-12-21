@@ -1,6 +1,10 @@
 package com.abiodunelijah.auth_users.entities;
 
-import com.stripe.model.Review;
+import com.abiodunelijah.cart.entities.Cart;
+import com.abiodunelijah.order.entities.Order;
+import com.abiodunelijah.payment.entities.Payment;
+import com.abiodunelijah.review.entities.Review;
+import com.abiodunelijah.role.entities.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
