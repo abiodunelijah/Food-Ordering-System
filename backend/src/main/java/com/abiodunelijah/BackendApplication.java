@@ -11,29 +11,29 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
-@EnableAsync
-@RequiredArgsConstructor
+//@EnableAsync
+//@RequiredArgsConstructor
 public class BackendApplication {
 
-    private final NotificationService notificationService;
+    //private final NotificationService notificationService;
 
     static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);
     }
 
 
-    @Bean
-    CommandLineRunner commandLineRunner(){
-        return args -> {
-            NotificationDto notificationDto = NotificationDto.builder()
-                    .recipient("abiodunelijah.yb@gmail.com")
-                    .subject("Email Subject Test")
-                    .body("Hello World, This is a test")
-                    .type(NotificationType.EMAIL)
-                    .build();
-
-            notificationService.sendEmail(notificationDto);
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(){
+//        return args -> {
+//            NotificationDto notificationDto = NotificationDto.builder()
+//                    .recipient("abiodunelijah.yb@gmail.com")
+//                    .subject("Email Subject Test")
+//                    .body("Hello World, This is a test")
+//                    .type(NotificationType.EMAIL)
+//                    .build();
+//
+//            notificationService.sendEmail(notificationDto);
+//        };
+//    }
 
 }

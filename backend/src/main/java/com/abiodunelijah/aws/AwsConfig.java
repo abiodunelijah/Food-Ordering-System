@@ -1,0 +1,41 @@
+package com.abiodunelijah.aws;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3Client;
+
+@Configuration
+public class AwsConfig {
+
+    @Value("${aws.s3.region}")
+    public String awsRegion;
+
+    @Value("${aws.s3.bucket}")
+    public String awsBucket;
+
+    @Value("${aws.accessKeyId}")
+    public String awsAccessKeyId;
+
+    @Value("${aws.secretKey}")
+    public String awsSecretKey;
+    
+    
+    @Bean
+    public StaticCredentialsProvider staticCredentialsProvider(){
+        return StaticCredentialsProvider.create(AwsBasicCredentials.create(awsAccessKeyId, awsSecretKey));
+    }
+
+    @Bean
+    public S3Client s3Client(StaticCredentialsProvider staticCredentialsProvider){
+        return S3Client.builder()
+                .region(Region.of(awsRegion))
+                .credentialsProvider(staticCredentialsProvider)
+                .build();
+    }
+
+}
