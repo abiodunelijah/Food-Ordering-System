@@ -37,9 +37,9 @@ public class AuthFilter extends OncePerRequestFilter {
         String token = generateTokenFromRequest(request);
 
         if (token != null){
-            String email = "";
+            String email ;
             try {
-                jwtUtils.getUsernameFromToken(token);
+                email = jwtUtils.getUsernameFromToken(token);
             }catch (Exception ex){
                 AuthenticationException authenticationException = new BadCredentialsException(ex.getMessage());
                 customAuthenticationEntryPoint.commence(request, response, authenticationException);

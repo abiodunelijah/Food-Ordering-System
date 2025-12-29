@@ -36,7 +36,7 @@ public class SecurityFilter {
                 .exceptionHandling(ex->
                         ex.accessDeniedHandler(customAccessDenialHandler).authenticationEntryPoint(entryPoint))
                 .authorizeHttpRequests(request->
-                        request.requestMatchers("/api/auth/**", "/api/categories/**", "/api/menu/**", "/api/reviews/**").permitAll()
+                        request.requestMatchers("/api/auth/**", "/api/categories/**", "/api/menu/**", "/api/reviews/**", "/api/v1/uploads/**").permitAll()
                                 .anyRequest().authenticated())
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
