@@ -17,6 +17,7 @@ public class UserDto {
     private Long id;
 
     private String name;
+    private String email;
     private String phoneNumber;
 
     private String photoUrl;
@@ -25,6 +26,8 @@ public class UserDto {
     private String password;
 
     private boolean isActive;
+
+    private String address;
 
     private List<RoleDto> roles;
 
