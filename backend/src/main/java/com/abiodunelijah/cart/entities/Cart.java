@@ -3,10 +3,7 @@ package com.abiodunelijah.cart.entities;
 
 import com.abiodunelijah.auth_users.entities.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -14,7 +11,8 @@ import java.util.List;
 @Table(name = "carts")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 @Builder
 public class Cart {
 
