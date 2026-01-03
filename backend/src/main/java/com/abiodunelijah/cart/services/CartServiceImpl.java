@@ -64,7 +64,7 @@ public class CartServiceImpl implements CartService {
         if (optionalCartItem.isPresent()){
             CartItem cartItem = optionalCartItem.get();
             cartItem.setQuantity(cartItem.getQuantity() + quantity);
-            cartItem.setSubtotal(cartItem.getPricePerUnit().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
+            cartItem.setSubTotal(cartItem.getPricePerUnit().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
             cartItemRepository.save(cartItem);
         }else {
             //if not present, and add it
@@ -73,7 +73,7 @@ public class CartServiceImpl implements CartService {
                     .menu(menu)
                     .quantity(quantity)
                     .pricePerUnit(menu.getPrice())
-                    .subtotal(menu.getPrice().multiply(BigDecimal.valueOf(quantity)))
+                    .subTotal(menu.getPrice().multiply(BigDecimal.valueOf(quantity)))
                     .build();
             cart.getCartItems().add(cartItem);
             cartItemRepository.save(cartItem);
@@ -102,7 +102,7 @@ public class CartServiceImpl implements CartService {
         int newQuantity = cartItem.getQuantity() + 1;
 
         cartItem.setQuantity(newQuantity);
-        cartItem.setSubtotal(cartItem.getPricePerUnit().multiply(BigDecimal.valueOf(newQuantity)));
+        cartItem.setSubTotal(cartItem.getPricePerUnit().multiply(BigDecimal.valueOf(newQuantity)));
         cartItemRepository.save(cartItem);
 
         return Response.builder()
@@ -128,7 +128,7 @@ public class CartServiceImpl implements CartService {
 
         if (newQuantity > 0) {
             cartItem.setQuantity(newQuantity);
-            cartItem.setSubtotal(cartItem.getPricePerUnit().multiply(BigDecimal.valueOf(newQuantity)));
+            cartItem.setSubTotal(cartItem.getPricePerUnit().multiply(BigDecimal.valueOf(newQuantity)));
             cartItemRepository.save(cartItem);
         } else {
             cart.getCartItems().remove(cartItem);
@@ -182,16 +182,16 @@ public class CartServiceImpl implements CartService {
         BigDecimal totalAmount = BigDecimal.ZERO;
         if (cartItems != null) { // Add null check here
             for (CartItem item : cartItems) {
-                totalAmount = totalAmount.add(item.getSubtotal());
+                totalAmount = totalAmount.add(item.getSubTotal());
             }
         }
 
         cartDTO.setTotalAmount(totalAmount); //set the totalAmount
 
         //remove the review from the response
-        if (cartDTO.getCartItems() != null) {
-            cartDTO.getCartItems()
-                    .forEach(item -> item.getMenu().setReviews(null));
+        if (cartDTO.getCartItemsDto() != null) {
+            cartDTO.getCartItemsDto()
+                    .forEach(item -> item.getMenuDto().setReviews(null));
         }
 
         return Response.<CartDto>builder()
