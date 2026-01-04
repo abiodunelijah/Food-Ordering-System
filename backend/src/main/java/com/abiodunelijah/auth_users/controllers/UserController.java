@@ -21,7 +21,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/all")
-    @PreAuthorize("hasAuthority('ADMIN')") //ADMIN alon has ACCESS to this endpoint
+    @PreAuthorize("hasAuthority('ADMIN')") //ADMIN alone has ACCESS to this endpoint
     public ResponseEntity<Response<List<UserDto>>> getAllUsers(){
         return ResponseEntity.ok(userService.getAllUsers());
     }
