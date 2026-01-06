@@ -58,8 +58,6 @@ public class OrderServiceImpl implements OrderService {
     @Value("${base.payment.link}")
     private String basedPaymentLink;
 
-
-
     @Transactional
     @Override
     public Response<?> placeOrderFromCart() {
@@ -80,7 +78,6 @@ public class OrderServiceImpl implements OrderService {
         Cart cart = cartRepository.findByUser_Id(customer.getId())
                 .orElseThrow(()-> new NotFoundException("Cart not found for the user" ));
 
-
         log.info("cart passed");
 
         List<CartItem> cartItems = cart.getCartItems();
@@ -92,7 +89,6 @@ public class OrderServiceImpl implements OrderService {
         List<OrderItem> orderItems = new ArrayList<>();
 
         BigDecimal totalAmount = BigDecimal.ZERO;
-
 
         log.info("totalAmount passed");
 
@@ -119,18 +115,15 @@ public class OrderServiceImpl implements OrderService {
                 .paymentStatus(PaymentStatus.PENDING)
                 .build();
 
-
         log.info("order build passed");
 
         Order savedOrder = orderRepository.save(order); //save order
-
 
         log.info("order saved passed");
 
         orderItems.forEach(orderItem -> orderItem.setOrder(savedOrder));
 
         orderItemRepository.saveAll(orderItems); //save order item
-
 
         log.info("order items saved");
 
@@ -141,21 +134,17 @@ public class OrderServiceImpl implements OrderService {
 
         OrderDto orderDTO = modelMapper.map(savedOrder, OrderDto.class);
 
-
-        log.info("model mappern mapped savedOrder to OrderDto");
+        log.info("model mapper mapped savedOrder to OrderDto");
 
         // Send email notifications
         sendOrderConfirmationEmail(customer, orderDTO);
 
-
         log.info("building response to send");
-
 
         return Response.builder()
                 .statusCode(HttpStatus.OK.value())
                 .message("Your order has been received! We've sent a secure payment link to your email. Please proceed for payment to confirm your order.")
                 .build();
-
     }
 
     @Override
@@ -194,7 +183,6 @@ public class OrderServiceImpl implements OrderService {
             return dto;
         });
 
-
         return Response.<Page<OrderDto>>builder()
                 .statusCode(HttpStatus.OK.value())
                 .message("Orders retrieved successfully")
@@ -219,13 +207,11 @@ public class OrderServiceImpl implements OrderService {
             orderItem.getOrderItems().forEach(item-> item.getMenu().setReviews(null));
         });
 
-
         return Response.<List<OrderDto>>builder()
                 .statusCode(HttpStatus.OK.value())
                 .message("Orders for user retrieved successfully")
                 .data(orderDTOS)
                 .build();
-
     }
 
     @Override
@@ -254,7 +240,6 @@ public class OrderServiceImpl implements OrderService {
     public Response<OrderDto> updateOrderStatus(OrderDto orderDTO) {
         log.info("Inside updateOrderStatus()");
 
-
         Order order = orderRepository.findById(orderDTO.getId())
                 .orElseThrow(() -> new NotFoundException("Order not found: "));
 
@@ -280,8 +265,6 @@ public class OrderServiceImpl implements OrderService {
                 .data(uniqueCustomerCount)
                 .build();
     }
-
-
 
     private void sendOrderConfirmationEmail(User customer, OrderDto orderDTO){
 

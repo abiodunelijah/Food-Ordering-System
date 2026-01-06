@@ -52,7 +52,7 @@ public class MenuServiceImpl implements MenuService {
         String imageUrl = null;
         MultipartFile imageFile = menuDTO.getImageFile();
 
-        if (imageFile != null || !imageFile.isEmpty()){
+        if (imageFile == null || imageFile.isEmpty()){
             throw new BadRequestException("menu image is required.");
         }
 
