@@ -1,7 +1,7 @@
 package com.abiodunelijah.enums;
 
 public enum OrderStatus {
-    INITIALIZE,
+    INITIALIZED,
     CONFIRMED,
     ON_THE_WAY,
     DELIVERED,
