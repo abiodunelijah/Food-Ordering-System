@@ -47,7 +47,7 @@ public class PaymentServiceImpl implements PaymentService {
     private final ModelMapper modelMapper;
 
 
-    @Value("${stripe.api.secret.key}")
+    @Value("${stripe.api.secrete.key}")
     private String secreteKey;
 
     @Value("${frontend.base.url}")
@@ -109,8 +109,6 @@ public class PaymentServiceImpl implements PaymentService {
             throw new RuntimeException("Error Creating payment unique transaction id");
         }
     }
-
-
 
     @Override
     public void updatePaymentForOrder(PaymentDto paymentDTO) {
@@ -227,7 +225,7 @@ public class PaymentServiceImpl implements PaymentService {
 
         return Response.<PaymentDto>builder()
                 .statusCode(HttpStatus.OK.value())
-                .message("payment retreived succeessfully by id")
+                .message("payment retrieved successfully by id")
                 .data(paymentDTOS)
                 .build();
     }
