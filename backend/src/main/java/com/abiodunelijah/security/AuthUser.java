@@ -16,6 +16,8 @@ public class AuthUser implements UserDetails {
 
     private User user;
 
+    /*
+    * */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return user.getRoles()
