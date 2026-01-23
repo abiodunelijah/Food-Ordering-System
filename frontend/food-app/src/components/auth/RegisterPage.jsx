@@ -1,7 +1,8 @@
 import {useError} from "../common/ErrorDisplay";
-import {Link, useNavigate} from "react-router-dom";
+
 import {useState} from "react";
 import ApiService from "../../services/ApiService";
+import {Link, useNavigate} from "react-router-dom";
 
 
 const RegisterPage = ()=> {
