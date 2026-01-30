@@ -12,7 +12,7 @@ const MenuDetailsPage = () => {
     const [quantity, setQuantity] = useState(1);
     const [cartSuccess, setCartSuccess] = useState(false);
 
-    const isAuthenticated = ApiService.isAthenticated();
+    const isAuthenticated = ApiService.isAuthenticated();
     const { ErrorDisplay, showError } = useError();
 
     useEffect(() => {

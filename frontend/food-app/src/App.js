@@ -67,29 +67,20 @@ function App() {
                         <Route path="categories/new" element={<AdminCategoryFormPage />} />
                         <Route path="categories/edit/:id" element={<AdminCategoryFormPage />} />
 
-
                         <Route path="menu-items" element={<AdminMenuPage />} />
                         <Route path="menu-items/new" element={<AdminMenuFormPage />} />
                         <Route path="menu-items/edit/:id" element={<AdminMenuFormPage />} />
 
-
                         <Route path="orders" element={<AdminOrdersPage />} />
                         <Route path="orders/:id" element={<AdminOrderDetailPage />} />
-
 
                         <Route path="payments" element={<AdminPaymentsPage />} />
 
                         <Route path="payments/:id" element={<AdminPaymentDetailPage />} />
 
-
-
                         <Route index element={<AdminDashboardPage />} />
 
-
                         <Route path="register" element={<AdminUserRegistration />} />
-
-
-
 
                     </Route>
 
